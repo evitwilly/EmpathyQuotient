@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bg_img"
+        android:scaleType="centerCrop" />
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/vertical_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_height="wrap_content" >-->
+
+<!--        <com.freeit.empathyquotient.presentation.view.RippleImageButton-->
+<!--            android:id="@+id/change_language_button"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:padding="4dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:src="@drawable/ic_baseline_language_24" />-->
+
+        <com.freeit.empathyquotient.presentation.view.ContentDescriptionView
+            android:id="@+id/desc_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="60dp"
+            android:padding="12dp"
+            android:background="@drawable/intro_box_bg" />
+
+<!--    </LinearLayout>-->
+
+
+    <com.freeit.empathyquotient.presentation.view.ArrowScalingButton
+        android:id="@+id/start_test_button"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="24dp"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>
