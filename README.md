@@ -45,3 +45,11 @@ EmpathyQuotient - это Android приложение, которое являе
 |---|---|---|
 |![screenshot #1](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen1.png)|![screenshot #2](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen2.png)|![screenshot #3](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen3.png)|
 |![screenshot #1](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen4.png)|![screenshot #2](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen5.png)|![screenshot #3](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/bg.png)|
+
+## Записи экрана
+
+[![Приложение EmpathyQuotient (экран результата)](https://img.youtube.com/vi/OQh30DnKHBs/0.jpg)](https://www.youtube.com/watch?v=OQh30DnKHBs)
+[![Приложение EmpathyQuotient (переход между вопросами)](https://img.youtube.com/vi/zp0oXagEAmw/0.jpg)](https://www.youtube.com/watch?v=zp0oXagEAmw)
+[![Приложение EmpathyQuotient (экран вопроса)](https://img.youtube.com/vi/6Z8VioezDeU/0.jpg)](https://www.youtube.com/watch?v=6Z8VioezDeU)
+[![Приложение EmpathyQuotient (переход между начальным экраном и тестом)](https://img.youtube.com/vi/bpcLbP7Oz5I/0.jpg)](https://www.youtube.com/watch?v=bpcLbP7Oz5I)
+[![Приложение EmpathyQuotient (начальный экран)](https://img.youtube.com/vi/1qs_LreyW7g/0.jpg)](https://www.youtube.com/watch?v=1qs_LreyW7g)
