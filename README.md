@@ -40,3 +40,8 @@ EmpathyQuotient - это Android приложение, которое являе
 6. **ShapedTextView** - текстовая метка, которая отображает текст вопроса
 
 ## Скриншоты
+
+|   |   |   |
+|---|---|---|
+|![screenshot #1](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen1.png) | ![screenshot #2](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen2.png) | ![screenshot #3](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen3.png)|
+|![screenshot #1](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen4.png) | ![screenshot #2](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen5.png) | ![screenshot #3](https://github.com/KiberneticWorm/hi_news_mobile/blob/master/screenshots/screen_6.png)|
