@@ -65,15 +65,6 @@ class ShapedTextView @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        val cutDistance = height / 6f
-//        canvas.clipPath(Path().apply {
-//            moveTo(0f, cutDistance)
-//            rLineTo(cutDistance, -cutDistance)
-//            rLineTo(width.toFloat() - cutDistance, 0f)
-//            rLineTo(0f, height.toFloat())
-//            rLineTo(-(width.toFloat() + cutDistance), 0f)
-//            close()
-//        })
         val shadowRect = RectF(0f, 0f, width.toFloat(), height.toFloat() - 1f)
         canvas.drawRoundRect(shadowRect, inset + 10f,  inset + 10f, shadowPaint)
         val backgroundRect = RectF(0f, inset / 1.5f, width.toFloat() - inset, height.toFloat())

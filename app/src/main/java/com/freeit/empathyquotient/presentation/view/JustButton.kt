@@ -116,9 +116,4 @@ class JustButton @JvmOverloads constructor(
         canvas.drawRect(0f, 0f, animWidth, height.toFloat(), bgPaint)
         super.dispatchDraw(canvas)
     }
-
-//    override fun onDraw(canvas: Canvas) {
-//
-//        super.onDraw(canvas)
-//    }
 }

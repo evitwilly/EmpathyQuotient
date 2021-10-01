@@ -3,36 +3,10 @@ package com.freeit.empathyquotient.presentation.navigator
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
-import com.freeit.empathyquotient.presentation.screens.test.State
-
-interface ScreenArg {
-
-    fun save(id: Int, appPrefs: LocalPrefsDataSource)
-
-
-    class Empty : ScreenArg {
-        override fun save(id: Int, appPrefs: LocalPrefsDataSource) {}
-    }
-    class Test(private var questionId: Int = 0) : ScreenArg {
-        fun qId() = questionId
-
-        companion object {
-            fun fromId(id: Int, appPrefs: LocalPrefsDataSource) : Test {
-                val questionId = appPrefs.int("${id}_question_id", 0)
-                return Test(questionId)
-            }
-        }
-
-        override fun save(id: Int, appPrefs: LocalPrefsDataSource) {
-            appPrefs.save("${id}_question_id", questionId)
-        }
-    }
-}
 
 interface Navigator {
     fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<ScreenEntry.Abstract>)

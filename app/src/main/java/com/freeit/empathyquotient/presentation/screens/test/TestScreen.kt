@@ -26,25 +26,6 @@ import com.freeit.empathyquotient.presentation.view.AbsoluteLayout
 import com.freeit.empathyquotient.presentation.view.AnswerView
 import com.freeit.empathyquotient.presentation.view.dp
 
-class ScoreData(private val appPrefs: LocalPrefsDataSource) {
-    companion object {
-        private const val scoreKey = "score_key"
-        private val defaultValue = List(60) { 0 }.joinToString(",")
-    }
-
-    fun select(questionId: Int, score: Int) {
-        val lastValue = appPrefs.str(scoreKey, defaultValue)
-        val scores = lastValue.split(",").map { it.toInt() }.toMutableList()
-        scores[questionId] = score
-        appPrefs.save(scoreKey, scores.joinToString(","))
-    }
-
-    fun score() : String {
-        val lastValue = appPrefs.str(scoreKey, defaultValue)
-        return lastValue.split(",").map { it.toInt() }.sum().toString()
-    }
-}
-
 class TestScreen(
     screenVitals: ScreenVitals,
     screenArg: ScreenArg,
