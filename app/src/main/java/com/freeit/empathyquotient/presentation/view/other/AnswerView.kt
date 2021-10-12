@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.other
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.presentation.view.buttons.AnimCheckBox
 
 class AnswerView @JvmOverloads constructor(
     ctx: Context,

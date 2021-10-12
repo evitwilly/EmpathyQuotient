@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.other
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -6,12 +6,9 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewTreeObserver
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import com.freeit.empathyquotient.presentation.screens.intro.QuestionWithAnswer
+import com.freeit.empathyquotient.presentation.view.layouts.AbsoluteLayout
 
 class DotView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

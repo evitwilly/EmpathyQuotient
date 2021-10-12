@@ -3,11 +3,10 @@ package com.freeit.empathyquotient.presentation.screens
 import android.view.View
 import android.view.ViewGroup
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
-import com.freeit.empathyquotient.presentation.navigator.ScreenArg
+import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.presentation.screens.intro.IntroScreen
-import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
+import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.score.ScoreScreen
-import com.freeit.empathyquotient.presentation.screens.test.State
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 
 interface ScreenState {

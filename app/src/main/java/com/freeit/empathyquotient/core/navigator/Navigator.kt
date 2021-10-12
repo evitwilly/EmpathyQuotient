@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.navigator
+package com.freeit.empathyquotient.core.navigator
 
 import android.view.View
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
-import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
 
 interface Navigator {
     fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<ScreenEntry.Abstract>)

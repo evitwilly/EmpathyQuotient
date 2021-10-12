@@ -1,6 +1,5 @@
 package com.freeit.empathyquotient.presentation.screens.intro
 
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.view.View
 import android.view.ViewGroup
@@ -13,19 +12,18 @@ import com.freeit.empathyquotient.databinding.IntroScreenLandscapeBinding
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 import android.view.Gravity
-import android.view.View.MeasureSpec.AT_MOST
-import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import androidx.viewbinding.ViewBinding
-import com.freeit.empathyquotient.presentation.navigator.ScreenArg
+import com.freeit.empathyquotient.core.navigator.ScreenArg
+import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.Prefix
-import com.freeit.empathyquotient.presentation.screens.test.PortraitCheck
+import com.freeit.empathyquotient.core.PortraitCheck
 import com.freeit.empathyquotient.presentation.utils.RandomBlurredImage
 import java.util.*
 import androidx.appcompat.widget.AppCompatImageView as AppCompatImageView1
-import android.os.Build
-import com.freeit.empathyquotient.presentation.navigator.TestStack
+import com.freeit.empathyquotient.core.navigator.TestStack
+import com.freeit.empathyquotient.presentation.view.other.BitmappedView
 
 
 class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id), ViewModelStoreOwner {

@@ -14,16 +14,17 @@ import com.freeit.empathyquotient.ActivityLifecycle
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
+import com.freeit.empathyquotient.core.PortraitCheck
 import com.freeit.empathyquotient.data.QuestionDataSource
 import com.freeit.empathyquotient.databinding.TestScreenBinding
-import com.freeit.empathyquotient.presentation.navigator.ScreenArg
+import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.presentation.screens.Prefix
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
-import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
+import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.score.ScoreScreen
 import com.freeit.empathyquotient.presentation.utils.RandomBlurredImage
-import com.freeit.empathyquotient.presentation.view.AbsoluteLayout
-import com.freeit.empathyquotient.presentation.view.AnswerView
+import com.freeit.empathyquotient.presentation.view.layouts.AbsoluteLayout
+import com.freeit.empathyquotient.presentation.view.other.AnswerView
 import com.freeit.empathyquotient.presentation.view.dp
 
 class TestScreen(
@@ -178,7 +179,7 @@ class TestScreen(
                     val anim1 = ObjectAnimator.ofFloat(newRoot, View.TRANSLATION_Y,  newRoot.measuredWidth / 2f, 0f)
                     val anim2 = ObjectAnimator.ofFloat(newRoot, View.TRANSLATION_X, newRoot.measuredHeight / 2f, 0f)
                     AnimatorSet().apply {
-                        duration = 600L
+                        duration = 300L
                         playTogether(anim1, anim2)
                         start()
                         doOnEnd {

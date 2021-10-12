@@ -17,7 +17,7 @@
 <!--        android:orientation="vertical"-->
 <!--        android:layout_height="wrap_content" >-->
 
-<!--        <com.freeit.empathyquotient.presentation.view.RippleImageButton-->
+<!--        <com.freeit.empathyquotient.presentation.view.buttons.RippleImageButton-->
 <!--            android:id="@+id/change_language_button"-->
 <!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
@@ -27,7 +27,7 @@
 <!--            android:layout_gravity="end"-->
 <!--            android:src="@drawable/ic_baseline_language_24" />-->
 
-        <com.freeit.empathyquotient.presentation.view.ContentDescriptionView
+        <com.freeit.empathyquotient.presentation.view.other.ContentDescriptionView
             android:id="@+id/desc_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

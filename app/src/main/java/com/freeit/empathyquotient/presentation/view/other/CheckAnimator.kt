@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.other
 
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator

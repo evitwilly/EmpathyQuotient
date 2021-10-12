@@ -1,13 +1,11 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.other
 
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
 import kotlin.random.Random

@@ -1,6 +1,5 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.buttons
 
-import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*

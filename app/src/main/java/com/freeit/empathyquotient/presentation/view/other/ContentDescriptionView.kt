@@ -1,17 +1,9 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.other
 
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.RectShape
-import android.graphics.drawable.shapes.RoundRectShape
-import android.graphics.drawable.shapes.Shape
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -19,12 +11,12 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
 import com.freeit.empathyquotient.presentation.screens.intro.QuestionWithAnswer
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.presentation.view.buttons.RippleImageButton
 
 class ContentDescriptionView @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

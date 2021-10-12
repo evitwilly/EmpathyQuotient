@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.buttons
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
+import com.freeit.empathyquotient.presentation.view.other.CheckAnimator
 
 class AnimCheckBox @JvmOverloads constructor(
     ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

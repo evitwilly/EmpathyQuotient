@@ -381,7 +381,6 @@ interface QuestionDataSource {
 
         override fun questById(id: Int) = questions.getOrNull(id) ?: questions.first()
     }
-    
 
     class Base(ctx: Context) : QuestionDataSource {
 

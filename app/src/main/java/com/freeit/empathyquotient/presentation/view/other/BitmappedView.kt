@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.screens.intro
+package com.freeit.empathyquotient.presentation.view.other
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.databinding.ActivityMainBinding
-import com.freeit.empathyquotient.presentation.navigator.Navigator
-import com.freeit.empathyquotient.presentation.navigator.ScreenStack
-import com.freeit.empathyquotient.presentation.navigator.TestStack
-import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
+import com.freeit.empathyquotient.core.navigator.Navigator
+import com.freeit.empathyquotient.core.navigator.ScreenStack
+import com.freeit.empathyquotient.core.navigator.TestStack
+import com.freeit.empathyquotient.core.navigator.ScreenVitals
 
 private fun Int.dp(ctx: Context) = (ctx.resources.displayMetrics.density * this)
 

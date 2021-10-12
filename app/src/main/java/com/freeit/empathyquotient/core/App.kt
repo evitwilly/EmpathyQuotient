@@ -5,7 +5,6 @@ import com.freeit.empathyquotient.LifecycleEvents
 import com.freeit.empathyquotient.SaveStateEvents
 import com.freeit.empathyquotient.data.QuestionDataSource
 
-// Android App class
 class App: Application() {
 
     val fontManager by lazy {

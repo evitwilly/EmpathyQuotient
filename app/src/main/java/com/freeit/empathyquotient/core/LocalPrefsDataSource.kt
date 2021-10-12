@@ -2,16 +2,6 @@ package com.freeit.empathyquotient.core
 
 import android.content.Context
 
-interface IntPrefs {
-    fun saveInt(ket: String, value: Int)
-    fun int(key: String, default: Int) : Int
-}
-
-interface StringPrefs {
-    fun saveStr(key: String, value: String)
-    fun str(key: String, default: String) : String
-}
-
 class LocalPrefsDataSource(ctx: Context) : IntPrefs, StringPrefs {
 
     private val prefsName = "app_prefs"

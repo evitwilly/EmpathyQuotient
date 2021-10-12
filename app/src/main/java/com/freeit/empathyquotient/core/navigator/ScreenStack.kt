@@ -1,10 +1,9 @@
-package com.freeit.empathyquotient.presentation.navigator
+package com.freeit.empathyquotient.core.navigator
 
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
 import com.freeit.empathyquotient.presentation.screens.Prefix
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.intro.IntroScreen
-import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
 
 interface ScreenStack {
     fun save(screenVitals: ScreenVitals, entry: ScreenEntry.Abstract)

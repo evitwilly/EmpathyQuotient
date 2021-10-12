@@ -1,8 +1,7 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.layouts
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View.MeasureSpec
 import android.view.ViewGroup
 import kotlin.math.max
 
@@ -11,7 +10,6 @@ open class AbsoluteLayout @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ViewGroup(ctx, attrs, defStyleAttr) {
-
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val count = childCount

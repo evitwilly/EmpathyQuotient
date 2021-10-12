@@ -12,15 +12,15 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.databinding.ScoreScreenBinding
-import com.freeit.empathyquotient.presentation.navigator.ScreenArg
-import com.freeit.empathyquotient.presentation.navigator.TestStack
+import com.freeit.empathyquotient.core.navigator.ScreenArg
+import com.freeit.empathyquotient.core.navigator.TestStack
 import com.freeit.empathyquotient.presentation.screens.Prefix
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.intro.IntroScreen
-import com.freeit.empathyquotient.presentation.screens.intro.ScreenVitals
+import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.test.ScoreData
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
-import com.freeit.empathyquotient.presentation.view.JustButton
+import com.freeit.empathyquotient.presentation.view.buttons.JustButton
 import com.freeit.empathyquotient.presentation.view.dp
 
 class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id) {

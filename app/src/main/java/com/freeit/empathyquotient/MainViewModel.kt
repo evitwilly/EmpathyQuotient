@@ -1,10 +1,7 @@
 package com.freeit.empathyquotient
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.freeit.empathyquotient.presentation.navigator.Navigator
-import com.freeit.empathyquotient.presentation.screens.ScreenEntry
+import com.freeit.empathyquotient.core.navigator.Navigator
 
 class MainViewModel(private val navigator: Navigator) : ViewModel() {
 

@@ -1,10 +1,9 @@
-package com.freeit.empathyquotient.presentation.screens.intro
+package com.freeit.empathyquotient.core.navigator
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
-import com.freeit.empathyquotient.presentation.navigator.Navigator
 
 interface ScreenVitals {
     fun inflater() : LayoutInflater

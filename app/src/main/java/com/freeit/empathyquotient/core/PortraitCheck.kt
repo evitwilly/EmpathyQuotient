@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.screens.test
+package com.freeit.empathyquotient.core
 
 import android.content.Context
 import android.content.res.Configuration

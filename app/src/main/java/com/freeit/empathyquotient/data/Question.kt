@@ -6,7 +6,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
-import com.freeit.empathyquotient.presentation.view.AnswerView
+import com.freeit.empathyquotient.presentation.view.other.AnswerView
 
 data class Question(
     private val number: Int = 0,

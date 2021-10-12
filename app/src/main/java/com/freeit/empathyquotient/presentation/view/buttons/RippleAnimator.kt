@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.buttons
 
 import android.animation.ValueAnimator
 import androidx.core.animation.doOnEnd
