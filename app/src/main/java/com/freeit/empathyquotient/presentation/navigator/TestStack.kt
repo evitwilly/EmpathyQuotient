@@ -16,11 +16,11 @@ interface TestStack {
         override fun save(entry: ScreenEntry.Abstract) {
             val stackValue = appPrefs.str(key, "")
             if (stackValue.isEmpty()) {
-                appPrefs.save(key, entry.id().toString())
+                appPrefs.saveStr(key, entry.id().toString())
             } else {
                 val ids = stackValue.split(",").toMutableList()
                 ids.add(entry.id().toString())
-                appPrefs.save(key, ids.joinToString(","))
+                appPrefs.saveStr(key, ids.joinToString(","))
             }
         }
 
@@ -36,7 +36,7 @@ interface TestStack {
         }
 
         override fun clear() {
-            appPrefs.save(key, "")
+            appPrefs.saveStr(key, "")
         }
     }
 }

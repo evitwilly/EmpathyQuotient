@@ -50,7 +50,7 @@ class IntroViewModel(
             currentQuestionIndex++
             val isLast = currentQuestionIndex == infoQuestions.size - 1
             _currentQuestion.value = infoQuestions[currentQuestionIndex].copy(isLast = isLast)
-            localPrefsDataSource.save(selectedIndexKey, currentQuestionIndex)
+            localPrefsDataSource.saveInt(selectedIndexKey, currentQuestionIndex)
         }
     }
 
@@ -58,7 +58,7 @@ class IntroViewModel(
         if (i > -1 && i < infoQuestions.size) {
             currentQuestionIndex = i
             _currentQuestion.value = infoQuestions[currentQuestionIndex]
-            localPrefsDataSource.save(selectedIndexKey, currentQuestionIndex)
+            localPrefsDataSource.saveInt(selectedIndexKey, currentQuestionIndex)
         }
     }
 
@@ -66,7 +66,7 @@ class IntroViewModel(
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--
             _currentQuestion.value = infoQuestions[currentQuestionIndex]
-            localPrefsDataSource.save(selectedIndexKey, currentQuestionIndex)
+            localPrefsDataSource.saveInt(selectedIndexKey, currentQuestionIndex)
         }
     }
 

@@ -20,7 +20,7 @@ abstract class State {
     class Test(private val answerId: Int) : State() {
 
         fun save(id: Int, appPrefs: LocalPrefsDataSource) {
-            appPrefs.save("${id}_$answerIdKey", answerId)
+            appPrefs.saveInt("${id}_$answerIdKey", answerId)
         }
 
         fun aId() = answerId

@@ -19,11 +19,11 @@ interface ScreenStack {
             val stackValue = appPrefs.str(stackValueKey, "")
             entry.saveArg(appPrefs)
             if (stackValue.isEmpty()) {
-                appPrefs.save(stackValueKey, entry.id().toString())
+                appPrefs.saveStr(stackValueKey, entry.id().toString())
             } else {
                 val ids = stackValue.split(",").toMutableList()
                 ids.add(entry.id().toString())
-                appPrefs.save(stackValueKey, ids.joinToString(","))
+                appPrefs.saveStr(stackValueKey, ids.joinToString(","))
             }
         }
 
@@ -44,7 +44,7 @@ interface ScreenStack {
             } else {
                 val ids = stackValue.split(",").toMutableList()
                 val lastId = ids.removeLast()
-                appPrefs.save(stackValueKey, ids.joinToString(","))
+                appPrefs.saveStr(stackValueKey, ids.joinToString(","))
                 ScreenEntry.Abstract.fromId(screenVitals, lastId.toInt(), appPrefs)
             }
         }

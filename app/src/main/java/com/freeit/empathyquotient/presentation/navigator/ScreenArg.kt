@@ -21,7 +21,7 @@ interface ScreenArg {
         }
 
         override fun save(id: Int, appPrefs: LocalPrefsDataSource) {
-            appPrefs.save("${id}_question_id", questionId)
+            appPrefs.saveInt("${id}_question_id", questionId)
         }
     }
 }

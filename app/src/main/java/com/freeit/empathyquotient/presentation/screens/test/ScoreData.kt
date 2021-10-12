@@ -12,7 +12,7 @@ class ScoreData(private val appPrefs: LocalPrefsDataSource) {
         val lastValue = appPrefs.str(scoreKey, defaultValue)
         val scores = lastValue.split(",").map { it.toInt() }.toMutableList()
         scores[questionId] = score
-        appPrefs.save(scoreKey, scores.joinToString(","))
+        appPrefs.saveStr(scoreKey, scores.joinToString(","))
     }
 
     fun score() : String {
