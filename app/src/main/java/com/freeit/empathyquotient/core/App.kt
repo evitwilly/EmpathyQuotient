@@ -7,10 +7,6 @@ import com.freeit.empathyquotient.data.QuestionDataSource
 
 class App: Application() {
 
-    val fontManager by lazy {
-        FontManager(this)
-    }
-
     val localPrefsDataSource by lazy {
         LocalPrefsDataSource(this)
     }

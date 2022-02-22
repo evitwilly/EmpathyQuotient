@@ -16,6 +16,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.core.extensions.robotoBold
 import kotlin.math.roundToInt
 
 class JustButton @JvmOverloads constructor(
@@ -68,7 +69,7 @@ class JustButton @JvmOverloads constructor(
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 17f)
             isAllCaps = true
         }
-        text.typeface = (context.applicationContext as App).fontManager.bold()
+        text.robotoBold()
         gravity = Gravity.CENTER
 
         text.setTextColor(Color.WHITE)

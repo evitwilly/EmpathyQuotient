@@ -35,6 +35,10 @@ class LinearLayoutCompatLP(private var params: LinearLayoutCompat.LayoutParams =
         height = LinearLayoutCompat.LayoutParams.WRAP_CONTENT
     })
 
+    fun gravity(grav: Int) = LinearLayoutCompatLP(params.apply {
+        gravity = grav
+    })
+
     fun weight(w: Float) = LinearLayoutCompatLP(params.apply {
         weight = w
     })

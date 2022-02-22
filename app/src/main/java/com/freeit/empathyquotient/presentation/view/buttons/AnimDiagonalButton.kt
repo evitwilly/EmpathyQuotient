@@ -10,6 +10,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.core.extensions.robotoBold
 import kotlin.math.asin
 import kotlin.math.sqrt
 
@@ -25,7 +26,7 @@ class AnimDiagonalButton @JvmOverloads constructor(
     private val listener = mutableListOf<() -> Unit>()
 
     init {
-        typeface = (context.applicationContext as App).fontManager.bold()
+        robotoBold()
     }
 
     fun setOnClickListener(listener: () -> Unit) {

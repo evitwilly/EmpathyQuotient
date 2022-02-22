@@ -1,6 +1,5 @@
 package com.freeit.empathyquotient.presentation.screens.intro
 
-import android.graphics.Bitmap
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -10,9 +9,7 @@ import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 import android.view.Gravity
-import android.widget.FrameLayout
 import androidx.core.view.isVisible
-import androidx.viewbinding.ViewBinding
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.core.navigator.ScreenVitals
@@ -20,7 +17,6 @@ import com.freeit.empathyquotient.presentation.screens.Prefix
 import com.freeit.empathyquotient.core.PortraitCheck
 import com.freeit.empathyquotient.presentation.image.RandomBlurredImage
 import java.util.*
-import androidx.appcompat.widget.AppCompatImageView as AppCompatImageView1
 import com.freeit.empathyquotient.core.navigator.TestStack
 import com.freeit.empathyquotient.presentation.view.ArrowScalingButton
 import com.freeit.empathyquotient.presentation.view.other.BitmappedView
@@ -69,15 +65,17 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
             padding(dp(12))
             bg(R.drawable.intro_box_bg)
 
-            val layoutParams = frameLayoutParams().wrapHeight()
+            val layoutParams = frameLayoutParams()
 
             val sixteen = dp(16)
             layoutParams(if (isPortraitOrientation) {
                 layoutParams.matchWidth()
+                    .height(dp(400))
                     .margins(sixteen, dp(60), sixteen, sixteen)
                     .build()
             } else {
                 layoutParams.width(dp(380))
+                    .matchHeight()
                     .margins(sixteen, sixteen, sixteen, sixteen)
                     .gravity(Gravity.START or Gravity.TOP)
                     .build()
@@ -93,12 +91,13 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
             layoutParams(if (isPortraitOrientation) {
                 layoutParams.matchWidth()
                     .marginBottom(dp(16))
-                    .gravity(Gravity.BOTTOM or Gravity.END)
+                    .gravity(Gravity.BOTTOM)
                     .build()
             } else {
                 layoutParams.wrapWidth()
                     .marginBottom(dp(24))
-                    .gravity(Gravity.BOTTOM).build()
+                    .gravity(Gravity.BOTTOM or Gravity.END)
+                    .build()
             })
         }
 
@@ -124,11 +123,11 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
             }
         }
 
-        contentDescriptionView.setDotChangeListener { viewModel.select(it) }
+        contentDescriptionView.onDotChanged { viewModel.select(it) }
         viewModel.selectedQuestion.observe(screenVitals.lifecycleOwner()) { question -> contentDescriptionView.changeQuestion(question) }
 
-        contentDescriptionView.setForwardClickListener { viewModel.next() }
-        contentDescriptionView.setBackClickListener { viewModel.prev() }
+        contentDescriptionView.onForwardClick { viewModel.next() }
+        contentDescriptionView.onBackClick { viewModel.prev() }
 
         frameLayoutContainer.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
             override fun onViewAttachedToWindow(p0: View) {}

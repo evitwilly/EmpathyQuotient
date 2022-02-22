@@ -21,6 +21,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.core.extensions.robotoBold
+import ru.freeit.noxml.extensions.colorRes
+import ru.freeit.noxml.extensions.fontSize
+import ru.freeit.noxml.extensions.text
 
 fun Int.dp(ctx: Context) = (ctx.resources.displayMetrics.density * this).toInt()
 
@@ -99,10 +103,10 @@ class ArrowScalingButton @JvmOverloads constructor(
         }
 
         val buttonText = AppCompatTextView(context).apply {
-            text = context.getString(R.string.start_testing).uppercase()
-            setTextColor(Color.WHITE)
-            typeface = (context.applicationContext as App).fontManager.bold()
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 26f)
+            text(context.getString(R.string.start_testing).uppercase())
+            colorRes(R.color.white)
+            robotoBold()
+            fontSize(26f)
         }
         val icon = AppCompatImageView(context)
 

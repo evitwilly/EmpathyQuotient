@@ -29,7 +29,7 @@ fun TextView.typeface(typeface: Typeface) {
 }
 
 fun TextView.typeface(assets: String) {
-    this.typeface = Typeface.createFromAsset(this.context.assets, "Montserrat-Bold.ttf")
+    this.typeface = Typeface.createFromAsset(this.context.assets, assets)
 }
 
 fun TextView.fontSize(sp: Float) {

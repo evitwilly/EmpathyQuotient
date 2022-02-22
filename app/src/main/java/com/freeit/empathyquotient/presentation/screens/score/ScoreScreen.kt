@@ -2,15 +2,11 @@ package com.freeit.empathyquotient.presentation.screens.score
 
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.graphics.Color
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatTextView
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.core.extensions.robotoBold
 import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.core.navigator.TestStack
 import com.freeit.empathyquotient.presentation.screens.Prefix
@@ -20,7 +16,6 @@ import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.test.ScoreData
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 import com.freeit.empathyquotient.presentation.view.buttons.JustButton
-import com.freeit.empathyquotient.presentation.view.dp
 import ru.freeit.noxml.extensions.*
 
 class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id) {
@@ -52,7 +47,7 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
         verticalLayout.addView(text(ctx) {
             text(ctx.getString(R.string.your_score, score))
             colorRes(R.color.white)
-            typeface((ctx.applicationContext as App).fontManager.bold())
+            robotoBold()
             fontSize(53f)
             textCenter()
             layoutParams(linearLayoutParams().build())

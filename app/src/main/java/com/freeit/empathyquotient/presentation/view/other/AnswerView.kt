@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
+import com.freeit.empathyquotient.core.extensions.robotoBold
 import com.freeit.empathyquotient.presentation.view.buttons.AnimCheckBox
 
 class AnswerView @JvmOverloads constructor(
@@ -51,7 +52,7 @@ class AnswerView @JvmOverloads constructor(
             layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
                 setMargins(10.dp(), 0, 0, 0)
             }
-            typeface = (context.applicationContext as App).fontManager.bold()
+            robotoBold()
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 23f)
             setTextColor(Color.WHITE)
         }

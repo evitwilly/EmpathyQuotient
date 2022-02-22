@@ -44,7 +44,7 @@ class RippleImageButton @JvmOverloads constructor(
 
     private var listener = mutableListOf<() -> Unit>()
 
-    fun setOnClickListener(onClick: () -> Unit) {
+    fun onClick(onClick: () -> Unit) {
         listener.clear()
         listener.add(onClick)
     }

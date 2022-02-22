@@ -15,6 +15,7 @@ import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
 import com.freeit.empathyquotient.core.PortraitCheck
+import com.freeit.empathyquotient.core.extensions.robotoRegular
 import com.freeit.empathyquotient.data.QuestionDataSource
 import com.freeit.empathyquotient.databinding.TestScreenBinding
 import com.freeit.empathyquotient.core.navigator.ScreenArg
@@ -110,10 +111,9 @@ class TestScreen(
 
         val quest = questionDataSource.questById(questionId)
         val answers = quest.answers(layoutInflater.context, answerId)
-        val fontManager = (binding.root.context.applicationContext as App).fontManager
 
         binding.questionText.text = quest.str(layoutInflater.context)
-        binding.questionText.typeface = fontManager.regular()
+        binding.questionText.robotoRegular()
 
         PortraitCheck(layoutInflater.context).run(
             onPortrait = { answers(answers, binding.questionAnswerBox) { _, _ ->
