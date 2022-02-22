@@ -22,7 +22,7 @@ import com.freeit.empathyquotient.presentation.screens.Prefix
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.score.ScoreScreen
-import com.freeit.empathyquotient.presentation.utils.RandomBlurredImage
+import com.freeit.empathyquotient.presentation.image.RandomBlurredImage
 import com.freeit.empathyquotient.presentation.view.layouts.AbsoluteLayout
 import com.freeit.empathyquotient.presentation.view.other.AnswerView
 import com.freeit.empathyquotient.presentation.view.dp
@@ -101,7 +101,10 @@ class TestScreen(
 
         val binding = TestScreenBinding.inflate(layoutInflater)
 
-        binding.bgImg.setImageBitmap(RandomBlurredImage(layoutInflater.context).bitmap())
+        binding.bgImg.setImageBitmap(
+            RandomBlurredImage(
+                layoutInflater.context
+            ).bitmap())
 
         questionDataSource = (binding.root.context.applicationContext as App).questionDataSource
 

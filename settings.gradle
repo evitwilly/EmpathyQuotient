@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "EmpathyQuotient"
 include ':app'
+include ':kotui'

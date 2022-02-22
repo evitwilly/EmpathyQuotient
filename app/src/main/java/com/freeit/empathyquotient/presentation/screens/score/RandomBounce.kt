@@ -15,10 +15,6 @@ class RandomBounce(
         radius += value * maxRadius
     }
 
-    fun zero() {
-        radius = 0f
-    }
-
     fun draw(canvas: Canvas, paint: Paint) {
         paint.color = color
         canvas.drawCircle(x, y, radius, paint)

@@ -5,33 +5,34 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.freeit.empathyquotient.core.App
-import com.freeit.empathyquotient.databinding.ActivityMainBinding
 import com.freeit.empathyquotient.core.navigator.Navigator
 import com.freeit.empathyquotient.core.navigator.ScreenStack
 import com.freeit.empathyquotient.core.navigator.TestStack
 import com.freeit.empathyquotient.core.navigator.ScreenVitals
-
-private fun Int.dp(ctx: Context) = (ctx.resources.displayMetrics.density * this)
+import ru.freeit.noxml.extensions.frameLayout
+import ru.freeit.noxml.extensions.layoutParams
+import ru.freeit.noxml.extensions.viewGroupLayoutParams
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private var navigator: Navigator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        val navigatorBox = frameLayout {
+            layoutParams(viewGroupLayoutParams().match().build())
+        }
+        setContentView(navigatorBox)
 
         val appPrefs = (application as App).localPrefsDataSource
 
-        val navigator = Navigator.Base(
-            ScreenVitals.Base(binding.navigatorBox, this),
+        navigator = Navigator.Base(
+            ScreenVitals.Base(navigatorBox, this),
             ScreenStack.Base(appPrefs, TestStack.Base(appPrefs)),
             TestStack.Base(appPrefs),
             (application as App).localPrefsDataSource
         )
-
-        viewModel = ViewModelProvider(this, MainViewModelFactory(navigator)).get(MainViewModel::class.java)
 
     }
 
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (viewModel.isBackPressed()) {
+        if (navigator?.back() != false) {
             super.onBackPressed()
         }
     }

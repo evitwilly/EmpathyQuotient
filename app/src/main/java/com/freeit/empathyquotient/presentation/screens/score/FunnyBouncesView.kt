@@ -13,11 +13,7 @@ import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
 import kotlin.random.Random
 
-class FunnyBouncesView @JvmOverloads constructor(
-    ctx: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttrs: Int = 0
-): View(ctx, attrs, defStyleAttrs) {
+class FunnyBouncesView(ctx: Context): View(ctx) {
 
     private val randomCoordinates = mutableListOf<RandomBounce>()
 

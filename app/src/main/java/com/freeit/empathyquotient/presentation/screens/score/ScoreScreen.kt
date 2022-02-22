@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.App
-import com.freeit.empathyquotient.databinding.ScoreScreenBinding
 import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.core.navigator.TestStack
 import com.freeit.empathyquotient.presentation.screens.Prefix
@@ -22,81 +21,65 @@ import com.freeit.empathyquotient.presentation.screens.test.ScoreData
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 import com.freeit.empathyquotient.presentation.view.buttons.JustButton
 import com.freeit.empathyquotient.presentation.view.dp
+import ru.freeit.noxml.extensions.*
 
 class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id) {
 
     override fun prefix() = Prefix.score()
 
-
     override fun view() : View {
-        val binding = ScoreScreenBinding.inflate(screenVitals.inflater())
+        val ctx = screenVitals.inflater().context
 
-        val funny = FunnyBouncesView(binding.root.context).apply {
-            layoutParams = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
-            )
-        }
-        binding.root.addView(funny)
-        funny.start {}
-
-        val verticalLayout = LinearLayout(binding.root.context).apply {
-            gravity = Gravity.CENTER_HORIZONTAL
-            orientation = LinearLayout.VERTICAL
-            layoutParams = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-                topMargin = 24.dp(context)
-                marginStart = 16.dp(context)
-                marginEnd = 16.dp(context)
-            }
+        val frameLayoutContainer = frameLayout(ctx) {
+            layoutParams(frameLayoutParams().matchWidth().matchHeight().build())
         }
 
-        val score = ScoreData((binding.root.context.applicationContext as App).localPrefsDataSource).score()
-
-        val scoreText = AppCompatTextView(binding.root.context)
-        scoreText.text = scoreText.context.getString(R.string.your_score, score)
-        scoreText.setTextColor(Color.WHITE)
-        scoreText.typeface = (scoreText.context.applicationContext as App).fontManager.bold()
-        scoreText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 53f)
-        scoreText.textAlignment = AppCompatTextView.TEXT_ALIGNMENT_CENTER
-        verticalLayout.addView(scoreText.apply {
-            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        frameLayoutContainer.addView(FunnyBouncesView(ctx).apply {
+            layoutParams(frameLayoutParams().matchWidth().matchHeight().build())
+            start {}
         })
 
-        val homeButton = JustButton(binding.root.context).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                topMargin = 8.dp(context)
-            }
+        val verticalLayout = linearLayout(ctx) {
+            vertical()
+            centerHorizontal()
+            layoutParams(frameLayoutParams().matchWidth()
+                .gravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+                .marginTop(dp(24)).marginStart(dp(16)).marginEnd(dp(16))
+                .wrapHeight().build())
         }
-        homeButton.changeText(homeButton.context.getString(R.string.return_to_first_screen))
-        homeButton.changeIcon(R.drawable.ic_return_24)
 
-        homeButton.measure(0, 0)
+        val score = ScoreData((ctx.applicationContext as App).localPrefsDataSource).score()
+        verticalLayout.addView(text(ctx) {
+            text(ctx.getString(R.string.your_score, score))
+            colorRes(R.color.white)
+            typeface((ctx.applicationContext as App).fontManager.bold())
+            fontSize(53f)
+            textCenter()
+            layoutParams(linearLayoutParams().build())
+        })
 
-        val startNewTestButton = JustButton(binding.root.context).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                homeButton.measuredWidth,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                topMargin = 24.dp(context)
-            }
+        val homeButton = JustButton(ctx).apply {
+            layoutParams(linearLayoutParams().wrapWidth()
+                .marginTop(dp(8)).wrapHeight().build())
+            changeText(context.getString(R.string.return_to_first_screen))
+            changeIcon(R.drawable.ic_return_24)
+            measure(0, 0)
         }
-        startNewTestButton.changeText(startNewTestButton.context.getString(R.string.start_new_test))
-        startNewTestButton.changeIcon(R.drawable.ic_edit_note_24)
 
-        verticalLayout.addView(startNewTestButton)
-        verticalLayout.addView(homeButton)
+        val startNewTestButton = JustButton(ctx).apply {
+            layoutParams(linearLayoutParams().width(homeButton.measuredWidth).wrapHeight()
+                .marginTop(dp(24))
+                .build())
+            changeText(context.getString(R.string.start_new_test))
+            changeIcon(R.drawable.ic_edit_note_24)
+        }
+
+        verticalLayout.addView(startNewTestButton, homeButton)
 
         val navigator = screenVitals.navigator()
-        val testStack = TestStack.Base((startNewTestButton.context.applicationContext as App).localPrefsDataSource)
+        val testStack = TestStack.Base((ctx.applicationContext as App).localPrefsDataSource)
 
-        startNewTestButton.setOnClickListener {
+        startNewTestButton.click {
             testStack.clear()
             navigator.navigate(
                 { screenVitals, arg, id -> TestScreen(screenVitals, arg, id) },
@@ -107,7 +90,7 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
                 parent.removeView(oldRoot)
             }
         }
-        homeButton.setOnClickListener {
+        homeButton.click {
             testStack.clear()
             navigator.navigate(
                 { screenVitals, arg, id -> IntroScreen(screenVitals, arg, id) },
@@ -119,20 +102,16 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
             }
         }
 
-        ObjectAnimator.ofFloat(verticalLayout, View.ALPHA, 0f, 1f)
-            .setDuration(3000L)
-            .start()
+        ObjectAnimator.ofFloat(verticalLayout, View.ALPHA, 0f, 1f).setDuration(3000L).start()
 
         verticalLayout.addView(JustButton(verticalLayout.context).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                homeButton.measuredWidth,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                topMargin = 8.dp(context)
-            }
+            layoutParams(linearLayoutParams()
+                .width(homeButton.measuredWidth)
+                .wrapHeight().marginTop(dp(8))
+                .build())
             changeText(context.getString(R.string.share_your_result))
             changeIcon(R.drawable.ic_share_24)
-            setOnClickListener {
+            click {
                 val sendIntent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, context.getString(R.string.your_empathy_quotient, score))
@@ -142,10 +121,8 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
             }
         })
 
-        binding.root.addView(verticalLayout)
-
-
-        return binding.root
+        frameLayoutContainer.addView(verticalLayout)
+        return frameLayoutContainer
     }
 
     override fun isStartDestination() = false

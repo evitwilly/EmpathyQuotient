@@ -7,23 +7,25 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import com.freeit.empathyquotient.core.App
-import com.freeit.empathyquotient.databinding.IntroScreenBinding
-import com.freeit.empathyquotient.databinding.IntroScreenLandscapeBinding
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 import android.view.Gravity
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import androidx.viewbinding.ViewBinding
+import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.Prefix
 import com.freeit.empathyquotient.core.PortraitCheck
-import com.freeit.empathyquotient.presentation.utils.RandomBlurredImage
+import com.freeit.empathyquotient.presentation.image.RandomBlurredImage
 import java.util.*
 import androidx.appcompat.widget.AppCompatImageView as AppCompatImageView1
 import com.freeit.empathyquotient.core.navigator.TestStack
+import com.freeit.empathyquotient.presentation.view.ArrowScalingButton
 import com.freeit.empathyquotient.presentation.view.other.BitmappedView
+import com.freeit.empathyquotient.presentation.view.other.ContentDescriptionView
+import ru.freeit.noxml.extensions.*
 
 
 class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id), ViewModelStoreOwner {
@@ -32,25 +34,13 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
 
     override fun prefix() = Prefix.intro()
 
-    private fun ViewBinding.toPortrait() = this as IntroScreenBinding
-    private fun ViewBinding.toLandscape() = this as IntroScreenLandscapeBinding
-
-    private lateinit var binding: ViewBinding
-
     override fun pop(oldScreen: View?) {
         (oldScreen?.parent as? ViewGroup)?.let { parent ->
             parent.addView(root, 0)
 
             root.post {
                 val bits = BitmappedView(root).fourBitmaps(parent.measuredWidth, parent.measuredHeight)
-
-                val img1 = addImgPart(parent, bits.first(),Gravity.START or Gravity.TOP)
-                val img2 = addImgPart(parent, bits[2], Gravity.END or Gravity.TOP)
-                val img3 = addImgPart(parent, bits[3], Gravity.END or Gravity.BOTTOM)
-                val img4 = addImgPart(parent, bits[1], Gravity.START or Gravity.BOTTOM)
-                FourthPartBitmapAnimator(listOf(img1, img2, img3, img4)).back(parent) {
-                    parent.removeView(oldScreen)
-                }
+                FourthPartBitmapAnimator(parent, bits).back(parent) { parent.removeView(oldScreen) }
             }
         }
 
@@ -59,22 +49,64 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
     override fun view(): View {
 
         val layoutInflater = screenVitals.inflater()
-        val portraitCheck = PortraitCheck(layoutInflater.context)
-        binding = portraitCheck.get(
-            onPortrait = { IntroScreenBinding.inflate(layoutInflater) },
-            onLandscape = { IntroScreenLandscapeBinding.inflate(layoutInflater) }
-        )
+        val ctx = layoutInflater.context
+
+        val frameLayoutContainer = frameLayout(ctx) {
+            layoutParams(viewGroupLayoutParams().match().build())
+        }
+
+        val backgroundImage = imageView(ctx) {
+            id(R.id.bg_img)
+            layoutParams(frameLayoutParams().matchWidth().matchHeight().build())
+            centerCrop()
+            img(RandomBlurredImage(ctx).bitmap())
+        }
+
+        val isPortraitOrientation = PortraitCheck(ctx).isYes()
+
+        val contentDescriptionView = ContentDescriptionView(ctx).apply {
+            id(R.id.desc_view)
+            padding(dp(12))
+            bg(R.drawable.intro_box_bg)
+
+            val layoutParams = frameLayoutParams().wrapHeight()
+
+            val sixteen = dp(16)
+            layoutParams(if (isPortraitOrientation) {
+                layoutParams.matchWidth()
+                    .margins(sixteen, dp(60), sixteen, sixteen)
+                    .build()
+            } else {
+                layoutParams.width(dp(380))
+                    .margins(sixteen, sixteen, sixteen, sixteen)
+                    .gravity(Gravity.START or Gravity.TOP)
+                    .build()
+            })
+        }
+
+        val startTestButton = ArrowScalingButton(ctx).apply {
+            id(R.id.start_test_button)
+
+            val layoutParams = frameLayoutParams().wrapHeight()
+                .marginStart(dp(16)).marginEnd(dp(16))
+
+            layoutParams(if (isPortraitOrientation) {
+                layoutParams.matchWidth()
+                    .marginBottom(dp(16))
+                    .gravity(Gravity.BOTTOM or Gravity.END)
+                    .build()
+            } else {
+                layoutParams.wrapWidth()
+                    .marginBottom(dp(24))
+                    .gravity(Gravity.BOTTOM).build()
+            })
+        }
+
+        frameLayoutContainer.addView(backgroundImage, contentDescriptionView, startTestButton)
 
         val localPrefsDataSource = (layoutInflater.context.applicationContext as App).localPrefsDataSource
         val viewModel  = ViewModelProvider(this, IntroViewModelFactory(layoutInflater.context, localPrefsDataSource)).get(IntroViewModel::class.java)
-
-        val contentDescView = if (portraitCheck.isYes()) binding.toPortrait().descView else binding.toLandscape().contentDescView
-        val startTestButton = if (portraitCheck.isYes()) binding.toPortrait().startTestButton else binding.toLandscape().startTestButton
-        val bgImage = if (portraitCheck.isYes()) binding.toPortrait().bgImg else binding.toLandscape().bgImg
-
-        bgImage.setImageBitmap(RandomBlurredImage(binding.root.context).bitmap())
-
-        val testStack = TestStack.Base((bgImage.context.applicationContext as App).localPrefsDataSource)
+        val testStack = TestStack.Base((ctx.applicationContext as App).localPrefsDataSource)
 
         startTestButton.setOnClickListener {
             testStack.clear()
@@ -82,51 +114,33 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
                 parent.addView(newRoot, 0)
 
                 oldRoot?.let { screenView ->
-                    val bits = BitmappedView(screenView).fourBitmaps()
-
                     if (screenView !is ViewGroup) { return@navigate }
 
                     for (i in 0 until screenView.childCount) { screenView.getChildAt(i).isVisible = false }
 
-                    val img1 = addImgPart(screenView, bits.first(),Gravity.START or Gravity.TOP)
-                    val img2 = addImgPart(screenView, bits[2], Gravity.END or Gravity.TOP)
-                    val img3 = addImgPart(screenView, bits[3], Gravity.END or Gravity.BOTTOM)
-                    val img4 = addImgPart(screenView, bits[1], Gravity.START or Gravity.BOTTOM)
-                    FourthPartBitmapAnimator(listOf(img1, img2, img3, img4)).forward(screenView)
+                    val bits = BitmappedView(screenView).fourBitmaps()
+                    FourthPartBitmapAnimator(screenView, bits).forward(screenView)
                 }
             }
         }
 
-        contentDescView.setDotChangeListener { viewModel.select(it) }
-        viewModel.selectedQuestion.observe(screenVitals.lifecycleOwner()) { question -> contentDescView.changeQuestion(question) }
+        contentDescriptionView.setDotChangeListener { viewModel.select(it) }
+        viewModel.selectedQuestion.observe(screenVitals.lifecycleOwner()) { question -> contentDescriptionView.changeQuestion(question) }
 
-        contentDescView.setForwardClickListener { viewModel.next() }
-        contentDescView.setBackClickListener { viewModel.prev() }
+        contentDescriptionView.setForwardClickListener { viewModel.next() }
+        contentDescriptionView.setBackClickListener { viewModel.prev() }
 
-        binding.root.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
+        frameLayoutContainer.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
             override fun onViewAttachedToWindow(p0: View) {}
             override fun onViewDetachedFromWindow(p0: View) {
                 viewModelStore.clear()
             }
         })
 
-        return binding.root
+        return frameLayoutContainer
     }
 
     override fun isStartDestination() = true
-
-    private fun addImgPart(screenView: ViewGroup, bitmap: Bitmap, gravity: Int): androidx.appcompat.widget.AppCompatImageView {
-        val img = AppCompatImageView1(screenView.context).apply {
-            layoutParams = FrameLayout.LayoutParams(
-                screenView.measuredWidth / 2, screenView.measuredHeight / 2
-            ).apply {
-                this.gravity = gravity
-            }
-            setImageBitmap(bitmap)
-        }
-        screenView.addView(img)
-        return img
-    }
 
     override fun getViewModelStore() = viewModelStore
 

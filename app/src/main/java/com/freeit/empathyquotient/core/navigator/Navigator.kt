@@ -8,7 +8,6 @@ import com.freeit.empathyquotient.core.LocalPrefsDataSource
 import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 
 interface Navigator {
-    fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<ScreenEntry.Abstract>)
     fun navigate(screenBuilder: (screenVitals: ScreenVitals, arg: ScreenArg, id: Int) -> ScreenEntry.Abstract,
                  arg: ScreenArg,
                  popToInclusive: Int,
@@ -17,7 +16,6 @@ interface Navigator {
     fun back(): Boolean
 
     class Empty : Navigator {
-        override fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<ScreenEntry.Abstract>) {}
         override fun navigate(screenBuilder: (screenVitals: ScreenVitals, arg: ScreenArg, id: Int) -> ScreenEntry.Abstract,
                               arg: ScreenArg,
                               onPopToInclusive: Int,
@@ -40,10 +38,6 @@ interface Navigator {
             lastScreen.restoreState(appPrefs)
             lastScreen.push(screenVitalsWithNavigator.parent(), null) { parent, newRoot, _ -> parent.addView(newRoot) }
             _screen.add(lastScreen)
-        }
-
-        override fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<ScreenEntry.Abstract>) {
-
         }
 
         private val defaultId = 0

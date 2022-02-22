@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.utils;
+package com.freeit.empathyquotient.presentation.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,14 +19,8 @@ public class RandomBlurredImage {
     public final float bitmapScale;
     public final float blurRadius;
 
-    private static final List<Integer> imageResources = new ArrayList();
-
-    static {
-        imageResources.add(R.drawable.bg_1);
-        imageResources.add(R.drawable.bg_2);
-        imageResources.add(R.drawable.bg_3);
-        imageResources.add(R.drawable.bg_4);
-    }
+    private final List<Integer> imageResources = new ArrayList();
+    private final Random random = new Random();
 
     public RandomBlurredImage(Context ctx) {
         this(ctx, 0.4f, 7.5f);
@@ -36,9 +30,12 @@ public class RandomBlurredImage {
         this.ctx = ctx;
         this.bitmapScale = bitmapScale;
         this.blurRadius = blurRadius;
-    }
 
-    final Random random = new Random();
+        imageResources.add(R.drawable.bg_1);
+        imageResources.add(R.drawable.bg_2);
+        imageResources.add(R.drawable.bg_3);
+        imageResources.add(R.drawable.bg_4);
+    }
 
     public Bitmap bitmap() {
         final int randomResourceId = imageResources.get(random.nextInt(imageResources.size()));
