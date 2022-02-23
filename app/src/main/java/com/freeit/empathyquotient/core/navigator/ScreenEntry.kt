@@ -1,11 +1,9 @@
-package com.freeit.empathyquotient.presentation.screens
+package com.freeit.empathyquotient.core.navigator
 
 import android.view.View
 import android.view.ViewGroup
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
-import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.presentation.screens.intro.IntroScreen
-import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.score.ScoreScreen
 import com.freeit.empathyquotient.presentation.screens.test.TestScreen
 
@@ -52,10 +50,8 @@ interface ScreenEntry : ScreenState {
     fun pop(oldRoot: View?)
 
     fun pushNext(parent: ViewGroup, onAnim: (parent: ViewGroup, root: View) -> Unit) {}
-//    fun pushPrev(parent: ViewGroup, onAnim: (parent: ViewGroup, root: View) -> Unit) {}
     fun pushPrev(parent: ViewGroup)
     fun popPrev(onAnim: (root: View) -> Unit) {}
-//    fun popCurrent(onAnim: (root: View) -> Unit) {}
     fun popCurrent()
 
     fun saveArg(appPrefs: LocalPrefsDataSource)
@@ -105,9 +101,6 @@ interface ScreenEntry : ScreenState {
             onAnim(parent, root, oldRoot)
         }
 
-//        override fun popCurrent(onAnim: (root: View) -> Unit) {
-//            onAnim(root)
-//        }
 
         override fun popPrev(onAnim: (root: View) -> Unit) {
             onAnim(root)

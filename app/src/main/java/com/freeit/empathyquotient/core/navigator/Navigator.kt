@@ -2,10 +2,7 @@ package com.freeit.empathyquotient.core.navigator
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
-import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 
 interface Navigator {
     fun navigate(screenBuilder: (screenVitals: ScreenVitals, arg: ScreenArg, id: Int) -> ScreenEntry.Abstract,

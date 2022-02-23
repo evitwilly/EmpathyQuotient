@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_back.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/drawable/header_background.xml" value="0.2265625" />
         <entry key="app/src/main/res/drawable/ic_arrow_right_alt_24.xml" value="0.27314814814814814" />
         <entry key="app/src/main/res/drawable/ic_arrow_right_alt_48.xml" value="0.26851851851851855" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.26296296296296295" />
         <entry key="app/src/main/res/drawable/ic_edit_note_24.xml" value="0.26296296296296295" />
         <entry key="app/src/main/res/drawable/ic_repeat_24.xml" value="0.26296296296296295" />

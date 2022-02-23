@@ -3,4 +3,6 @@
     <item name="bg_img" type="id"></item>
     <item name="desc_view" type="id"></item>
     <item name="start_test_button" type="id"></item>
+    <item name="question_answer_box" type="id"></item>
+    <item name="question_text" type="id"></item>
 </resources>

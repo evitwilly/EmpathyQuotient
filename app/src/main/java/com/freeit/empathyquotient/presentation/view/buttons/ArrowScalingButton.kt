@@ -1,4 +1,4 @@
-package com.freeit.empathyquotient.presentation.view
+package com.freeit.empathyquotient.presentation.view.buttons
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -7,7 +7,6 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -15,12 +14,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import com.freeit.empathyquotient.R
-import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.core.extensions.robotoBold
 import ru.freeit.noxml.extensions.colorRes
 import ru.freeit.noxml.extensions.fontSize
@@ -115,7 +110,7 @@ class ArrowScalingButton @JvmOverloads constructor(
         })
 
         addView(icon.apply {
-            setImageResource(R.drawable.ic_arrow_right_alt_48)
+            setImageResource(R.drawable.ic_forward)
             layoutParams = LayoutParams(
                 0.dp(),
                 LayoutParams.WRAP_CONTENT

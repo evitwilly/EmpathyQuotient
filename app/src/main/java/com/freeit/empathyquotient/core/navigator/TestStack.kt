@@ -1,7 +1,6 @@
 package com.freeit.empathyquotient.core.navigator
 
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
-import com.freeit.empathyquotient.presentation.screens.ScreenEntry
 
 interface TestStack {
     fun save(entry: ScreenEntry.Abstract)

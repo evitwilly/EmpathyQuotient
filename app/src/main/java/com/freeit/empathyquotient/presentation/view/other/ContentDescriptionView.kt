@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
@@ -52,26 +53,29 @@ class ContentDescriptionView(ctx: Context) : LinearLayoutCompat(ctx) {
     }
 
     fun onBackClick(listener: () -> Unit) {
-        backButton.onClick(listener)
+        backButton.click(listener)
     }
 
     fun onForwardClick(listener: () -> Unit) {
-        forwardButton.onClick(listener)
+        forwardButton.click(listener)
     }
 
-    private val backButton = RippleImageButton(context).apply {
-        img(R.drawable.ic_arrow_right_alt_24)
-        gone()
+    private val backButton = AppCompatImageView(context).apply {
+        clickable()
+        ripple(R.color.yellow_500, dp(32))
+        img(R.drawable.ic_forward)
         scaleX = -1f
+        gone()
         layoutParams(frameLayoutParams()
-            .width(dp(35)).height(dp(35))
+            .width(dp(35)).height(dp(32)).marginEnd(dp(40))
             .gravity(Gravity.BOTTOM or Gravity.END)
-            .margins(0, 0, dp(35), 0)
             .build())
     }
 
-    private val forwardButton = RippleImageButton(context).apply {
-        img(R.drawable.ic_arrow_right_alt_24)
+    private val forwardButton = AppCompatImageView(context).apply {
+        clickable()
+        ripple(R.color.yellow_500, dp(32))
+        img(R.drawable.ic_forward)
         gone()
         layoutParams(frameLayoutParams()
             .width(dp(32)).height(dp(32))

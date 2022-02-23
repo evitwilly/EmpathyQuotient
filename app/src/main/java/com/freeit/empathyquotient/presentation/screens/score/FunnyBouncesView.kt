@@ -11,6 +11,7 @@ import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
+import ru.freeit.noxml.extensions.colorBy
 import kotlin.random.Random
 
 class FunnyBouncesView(ctx: Context): View(ctx) {
@@ -20,19 +21,17 @@ class FunnyBouncesView(ctx: Context): View(ctx) {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         for (i in 0 until 33) {
-            val primaryColor = ContextCompat.getColor(context, R.color.primaryColor)
+            val primaryColor = context.colorBy(R.color.primaryColor)
             val randomColor = Color.argb(
                 Random.nextInt(100, 255),
                 Color.red(primaryColor),
                 Color.green(primaryColor),
                 Color.blue(primaryColor)
             )
-            randomCoordinates.add(
-                RandomBounce(
-                    Random.nextFloat() * w, Random.nextFloat() * h,
-                    Random.nextFloat() * 100f + 10f, randomColor
-                )
-            )
+            val x = Random.nextFloat() * w
+            val y = Random.nextFloat() * h
+            val maxRadius = Random.nextFloat() * 100f + 10f
+            randomCoordinates.add(RandomBounce(x, y, maxRadius, randomColor))
         }
     }
 

@@ -9,8 +9,8 @@ import com.freeit.empathyquotient.core.App
 import com.freeit.empathyquotient.core.extensions.robotoBold
 import com.freeit.empathyquotient.core.navigator.ScreenArg
 import com.freeit.empathyquotient.core.navigator.TestStack
-import com.freeit.empathyquotient.presentation.screens.Prefix
-import com.freeit.empathyquotient.presentation.screens.ScreenEntry
+import com.freeit.empathyquotient.core.navigator.Prefix
+import com.freeit.empathyquotient.core.navigator.ScreenEntry
 import com.freeit.empathyquotient.presentation.screens.intro.IntroScreen
 import com.freeit.empathyquotient.core.navigator.ScreenVitals
 import com.freeit.empathyquotient.presentation.screens.test.ScoreData

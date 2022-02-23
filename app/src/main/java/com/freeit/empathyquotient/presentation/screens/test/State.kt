@@ -1,7 +1,7 @@
 package com.freeit.empathyquotient.presentation.screens.test
 
 import com.freeit.empathyquotient.core.LocalPrefsDataSource
-import com.freeit.empathyquotient.presentation.screens.Prefix
+import com.freeit.empathyquotient.core.navigator.Prefix
 
 abstract class State {
 
