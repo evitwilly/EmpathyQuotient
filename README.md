@@ -1,6 +1,6 @@
 # EmpathyQuotient
 
-EmpathyQuotient - Android приложение, тест по измерению эмпатии [эмпатии](https://inlnk.ru/VoRlJ)
+EmpathyQuotient - Android приложение, тест по измерению коэффициента [эмпатии](https://inlnk.ru/VoRlJ)
 
 Основные фишки приложения:
 
