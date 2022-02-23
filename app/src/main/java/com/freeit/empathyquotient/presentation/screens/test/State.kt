@@ -5,16 +5,6 @@ import com.freeit.empathyquotient.core.navigator.Prefix
 
 abstract class State {
 
-    companion object {
-        fun fromId(id: Int, appPrefs: LocalPrefsDataSource) : State {
-            val prefix = Prefix(id)
-            return when {
-                prefix.isTest() -> Test.fromId(id, appPrefs)
-                else -> Empty()
-            }
-        }
-    }
-
     class Empty : State()
 
     class Test(private val answerId: Int) : State() {

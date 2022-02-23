@@ -85,8 +85,7 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
         val startTestButton = ArrowScalingButton(ctx).apply {
             id(R.id.start_test_button)
 
-            val layoutParams = frameLayoutParams().wrapHeight()
-                .marginStart(dp(16)).marginEnd(dp(16))
+            val layoutParams = frameLayoutParams().wrapHeight().marginStart(dp(16)).marginEnd(dp(16))
 
             layoutParams(if (isPortraitOrientation) {
                 layoutParams.matchWidth()

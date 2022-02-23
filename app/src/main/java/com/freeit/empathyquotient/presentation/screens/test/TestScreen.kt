@@ -23,15 +23,10 @@ import com.freeit.empathyquotient.presentation.image.RandomBlurredImage
 import com.freeit.empathyquotient.presentation.view.buttons.AnimDiagonalButton
 import com.freeit.empathyquotient.presentation.view.layouts.AbsoluteLayout
 import com.freeit.empathyquotient.presentation.view.other.AnswerView
-import com.freeit.empathyquotient.presentation.view.buttons.dp
 import com.freeit.empathyquotient.presentation.view.other.ShapedTextView
 import ru.freeit.noxml.extensions.*
 
-class TestScreen(
-    screenVitals: ScreenVitals,
-    screenArg: ScreenArg,
-    id: Int
-) : ScreenEntry.Abstract(screenVitals, screenArg, id) {
+class TestScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id) {
 
     override fun prefix() = Prefix.test()
     override fun isStartDestination() = false

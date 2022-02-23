@@ -747,10 +747,10 @@ interface QuestionDataSource {
             ))
         )
 
-        override fun quests() = questions
+        override fun quests() = questions.take(1)
         override fun hasNext(questionId: Int): Boolean {
             val nextQuestionId = questionId + 1
-            return nextQuestionId >= 0 && nextQuestionId <= questions.size.minus(1)
+            return nextQuestionId >= 0 && nextQuestionId <= questions.take(1).size.minus(1)
         }
 
         override fun questById(id: Int) = questions.getOrNull(id) ?: questions.first()

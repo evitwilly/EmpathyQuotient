@@ -5,11 +5,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import kotlin.math.max
 
-open class AbsoluteLayout @JvmOverloads constructor(
-    ctx: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : ViewGroup(ctx, attrs, defStyleAttr) {
+open class AbsoluteLayout(ctx: Context) : ViewGroup(ctx) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val count = childCount
@@ -31,11 +27,9 @@ open class AbsoluteLayout @JvmOverloads constructor(
             }
         }
 
-        // Account for padding too
         maxWidth += paddingLeft + paddingRight
         maxHeight += paddingTop + paddingBottom
 
-        // Check against minimum height and width
         maxHeight = max(maxHeight, suggestedMinimumHeight)
         maxWidth = max(maxWidth, suggestedMinimumWidth)
         setMeasuredDimension(

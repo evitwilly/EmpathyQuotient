@@ -74,7 +74,7 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
         val navigator = screenVitals.navigator()
         val testStack = TestStack.Base((ctx.applicationContext as App).localPrefsDataSource)
 
-        startNewTestButton.click {
+        startNewTestButton.onClick {
             testStack.clear()
             navigator.navigate(
                 { screenVitals, arg, id -> TestScreen(screenVitals, arg, id) },
@@ -85,7 +85,7 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
                 parent.removeView(oldRoot)
             }
         }
-        homeButton.click {
+        homeButton.onClick {
             testStack.clear()
             navigator.navigate(
                 { screenVitals, arg, id -> IntroScreen(screenVitals, arg, id) },
@@ -106,7 +106,7 @@ class ScoreScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
                 .build())
             changeText(context.getString(R.string.share_your_result))
             changeIcon(R.drawable.ic_share_24)
-            click {
+            onClick {
                 val sendIntent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, context.getString(R.string.your_empathy_quotient, score))

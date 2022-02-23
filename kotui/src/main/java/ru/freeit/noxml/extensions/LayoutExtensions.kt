@@ -77,6 +77,10 @@ fun LinearLayoutCompat.centerHorizontal() {
     gravity = Gravity.CENTER_HORIZONTAL
 }
 
+fun LinearLayoutCompat.center() {
+    gravity = Gravity.CENTER
+}
+
 fun LinearLayoutCompat.centerVertical() {
     gravity = Gravity.CENTER_VERTICAL
 }

@@ -1,5 +1,6 @@
 package com.freeit.empathyquotient.presentation.view.buttons
 
+import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
@@ -14,16 +15,21 @@ import com.freeit.empathyquotient.core.extensions.robotoBold
 import kotlin.math.asin
 import kotlin.math.sqrt
 
-class AnimDiagonalButton @JvmOverloads constructor(
-    ctx: Context,
-    attributeSet: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : AppCompatTextView(ctx, attributeSet, defStyleAttr) {
+class AnimDiagonalButton(ctx: Context) : AppCompatTextView(ctx) {
 
     private var y1 = 0f
     private var y2 = 0f
 
     private val listener = mutableListOf<() -> Unit>()
+    private var animator: Animator? = null
+
+    private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = ContextCompat.getColor(context, R.color.primaryDarkColor)
+    }
+
+    private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = ContextCompat.getColor(context, R.color.primaryColor)
+    }
 
     init {
         robotoBold()
@@ -37,36 +43,28 @@ class AnimDiagonalButton @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
-                val animHeight = ValueAnimator.ofFloat(0f, height * 2f)
-                animHeight.addUpdateListener {
+                val animator = ValueAnimator.ofFloat(0f, height * 2f)
+                animator.addUpdateListener {
                     y1 = it.animatedValue as Float
                     y2 = -(it.animatedValue as Float)
                     invalidate()
                 }
-                animHeight.duration = 300L
-                animHeight.doOnEnd {
-                    y1 = 0f
-                    y2 = 0f
-                    invalidate()
-                }
-                animHeight.start()
+                animator.duration = 300L
+                animator.start()
+                this.animator = animator
                 true
             }
             MotionEvent.ACTION_UP -> {
-                listener.firstOrNull()?.invoke()
+                animator?.cancel()
+                y1 = 0f
+                y2 = 0f
+                invalidate()
+                if (event.x >= 0 && event.y >= 0 && event.x <= width && event.y <= height)
+                    listener.firstOrNull()?.invoke()
                 true
             }
             else -> super.onTouchEvent(event)
         }
-    }
-
-    private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.primaryDarkColor)
-    }
-
-    private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.primaryColor)
     }
 
     override fun onDraw(canvas: Canvas) {

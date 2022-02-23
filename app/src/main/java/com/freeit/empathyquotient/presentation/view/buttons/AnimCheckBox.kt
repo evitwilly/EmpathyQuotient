@@ -11,11 +11,14 @@ import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.presentation.view.other.CheckAnimator
 
-class AnimCheckBox @JvmOverloads constructor(
-    ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : View(ctx, attrs, defStyleAttr) {
+class AnimCheckBox constructor(ctx: Context) : View(ctx) {
 
     private val listener = mutableListOf<(Boolean) -> Unit>()
+
+    private var firstX = 0f
+    private var firstY = 0f
+    private var lastX = 0f
+    private var lastY = 0f
 
     private var isChecked = false
 
@@ -129,11 +132,6 @@ class AnimCheckBox @JvmOverloads constructor(
         style = Paint.Style.STROKE
         strokeWidth = 20f
     }
-
-    private var firstX = 0f
-    private var firstY = 0f
-    private var lastX = 0f
-    private var lastY = 0f
 
     private fun reset() {
         firstX = width / 5.6f

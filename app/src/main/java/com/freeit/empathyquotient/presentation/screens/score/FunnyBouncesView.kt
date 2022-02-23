@@ -17,6 +17,7 @@ import kotlin.random.Random
 class FunnyBouncesView(ctx: Context): View(ctx) {
 
     private val randomCoordinates = mutableListOf<RandomBounce>()
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -46,8 +47,6 @@ class FunnyBouncesView(ctx: Context): View(ctx) {
             start()
         }
     }
-
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

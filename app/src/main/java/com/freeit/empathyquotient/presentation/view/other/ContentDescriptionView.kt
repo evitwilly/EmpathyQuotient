@@ -13,29 +13,19 @@ import com.freeit.empathyquotient.presentation.screens.intro.QuestionWithAnswer
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.extensions.robotoBold
 import com.freeit.empathyquotient.core.extensions.robotoRegular
-import com.freeit.empathyquotient.presentation.view.buttons.RippleImageButton
 import ru.freeit.noxml.extensions.*
 
 class ContentDescriptionView(ctx: Context) : LinearLayoutCompat(ctx) {
 
-    private fun fadeText(view: TextView, txt: String) {
-        ObjectAnimator.ofFloat(headerText, View.ALPHA, 1f, 0f).apply {
-            duration = 260L
-            doOnEnd {
-                view.text = txt
-                ObjectAnimator.ofFloat(headerText, View.ALPHA, 0f, 1f).apply {
-                    duration = 260L
-                    start()
-                }
-            }
-            start()
-        }
-    }
-
     fun changeQuestion(question: QuestionWithAnswer) {
 
         if (question.isAnim()) {
-            fadeText(headerText, question.q())
+            headerText.animate()
+                .withEndAction {
+                    headerText.text(question.q())
+                    headerText.animate().alpha(1f).setDuration(260L).start()
+                }
+                .alpha(0f).setDuration(260L).start()
         } else {
             headerText.text = question.q()
         }
@@ -116,7 +106,6 @@ class ContentDescriptionView(ctx: Context) : LinearLayoutCompat(ctx) {
         })
 
         addView(headerText, contentText, dotIndicatorView)
-
     }
 
 

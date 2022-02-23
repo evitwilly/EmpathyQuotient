@@ -1,132 +1,60 @@
 package com.freeit.empathyquotient.presentation.view.buttons
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.extensions.robotoBold
-import ru.freeit.noxml.extensions.colorRes
-import ru.freeit.noxml.extensions.fontSize
-import ru.freeit.noxml.extensions.text
+import ru.freeit.noxml.extensions.*
 
-fun Int.dp(ctx: Context) = (ctx.resources.displayMetrics.density * this).toInt()
-
-private class ArrowScalingAnimator(
-    private var delay: Long = 500L,
-    private val arrowScaleStart: Int = 0,
-    private val arrowScaleEnd: Int = 50,
-    private val containerScaleStart: Float = 1f,
-    private val containerScaleEnd: Float = 1.03f
-) {
-
-    private fun anim(container: ViewGroup, arrowIcon: View, isForward: Boolean = false) {
-        val ctx = container.context
-
-        val arrScaleStart = if (isForward) arrowScaleStart else arrowScaleEnd
-        val arrScaleEnd = if (isForward) arrowScaleEnd else arrowScaleStart
-
-        ValueAnimator.ofInt(arrScaleStart, arrScaleEnd).apply {
-            duration = delay
-            addUpdateListener {
-                arrowIcon.layoutParams = arrowIcon.layoutParams.apply {
-                    width = (it.animatedValue as Int).dp(ctx)
-                    container.setPadding(40.dp(ctx) - ((it.animatedValue as Int) / 2).dp(ctx),
-                        10.dp(ctx), 40.dp(ctx) - ((it.animatedValue as Int) / 2).dp(ctx), 10.dp(ctx)
-                    )
-                }
-            }
-            start()
-        }
-
-        val contScaleStart = if (isForward) containerScaleStart else containerScaleEnd
-        val contScaleEnd = if (isForward) containerScaleEnd else containerScaleStart
-
-        val animator1 = ObjectAnimator.ofFloat(container, View.SCALE_X, contScaleStart, contScaleEnd)
-        val animator2 = ObjectAnimator.ofFloat(container, View.SCALE_Y, contScaleStart, contScaleEnd)
-        val animSet = AnimatorSet()
-        animSet.playTogether(animator1, animator2)
-        animSet.duration = delay
-        animSet.start()
-    }
-
-    fun forward(container: ViewGroup, arrowIcon: View) = anim(container, arrowIcon, true)
-    fun reverse(container: ViewGroup, arrowIcon: View) = anim(container, arrowIcon, false)
-
-}
-
-class ArrowScalingButton @JvmOverloads constructor(
-    ctx: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : LinearLayout(ctx, attrs, defStyleAttr) {
+class ArrowScalingButton(ctx: Context) : LinearLayoutCompat(ctx) {
 
     private var radius: Float = 0f
 
     private var pointX = 0f
     private var pointY = 0f
 
+    private val listener = mutableListOf<() -> Unit>()
     private val arrowScalingAnimator = ArrowScalingAnimator()
 
-
-    // create dp() extension for translating dp to pixels
-    private fun Int.dp() = (context.resources.displayMetrics.density * this).toInt()
-
     init {
-        // using our extension
-        setPadding(40.dp(), 10.dp(), 40.dp(), 10.dp())
+        padding(horizontal = dp(40), vertical = dp(10))
+        clickable()
+        horizontal()
+        center()
+        bg(GradientDrawable().apply {
+            setColor(colorBy(R.color.primaryColor))
+        })
 
-        isClickable = true
-
-        orientation = HORIZONTAL
-        gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
-
-
-        background = GradientDrawable().apply {
-            setColor(ContextCompat.getColor(context, R.color.primaryColor))
-        }
-
-        val buttonText = AppCompatTextView(context).apply {
+        val buttonText = text {
             text(context.getString(R.string.start_testing).uppercase())
             colorRes(R.color.white)
             robotoBold()
             fontSize(26f)
+            layoutParams(linearLayoutParams().wrapWidth().wrapHeight().build())
         }
-        val icon = AppCompatImageView(context)
+        val icon = imageView {
+            img(R.drawable.ic_forward)
+            layoutParams(linearLayoutParams().width(0).wrapHeight()
+                .marginStart(dp(4))
+                .build())
+        }
 
-        addView(buttonText.apply {
-            layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        })
-
-        addView(icon.apply {
-            setImageResource(R.drawable.ic_forward)
-            layoutParams = LayoutParams(
-                0.dp(),
-                LayoutParams.WRAP_CONTENT
-            ).apply {
-                marginStart = 5.dp()
-            }
-        })
+        addView(buttonText, icon)
     }
-
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         radius = w * 2f
     }
-
-    private val listener = mutableListOf<() -> Unit>()
 
     fun setOnClickListener(listener: () -> Unit) {
         this.listener.clear()
@@ -143,7 +71,8 @@ class ArrowScalingButton @JvmOverloads constructor(
                 arrowScalingAnimator.forward(this, getChildAt(1))
             }
             MotionEvent.ACTION_UP -> {
-                listener.firstOrNull()?.invoke()
+                if (event.x >= 0 && event.y >= 0 && event.x <= width && event.y <= height)
+                    listener.firstOrNull()?.invoke()
                 arrowScalingAnimator.reverse(this, getChildAt(1))
             }
         }
