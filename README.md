@@ -1,15 +1,15 @@
 # EmpathyQuotient
 
-EmpathyQuotient - это Android приложение, которое является тестом для измерения коэффициента [эмпатии](https://inlnk.ru/VoRlJ)
+EmpathyQuotient - Android приложение, которое является измеряет коэффмциент эмпатии [эмпатии](https://inlnk.ru/VoRlJ)
 
-Основные преимущества приложения:
+Основные фишки приложения:
 
 1. Красивые анимации переходов между экранами
 2. Сохранение состояния приложения после выхода из него
 3. Кастомные кнопки с прикольной анимацией и изящный шрифт **Roboto**
-4. А также потрясающий эффект перехода на результаты теста
+4. А также потрясающие эффекты!
 
-Мое приложение может заинтересовать других разработчиков и поэтому я опишу его особенности.
+Мое приложение могло заинтересовать других разработчиков и поэтому я опишу его особенности.
 
 ### С нуля написанная навигация
 
@@ -23,7 +23,7 @@ EmpathyQuotient - это Android приложение, которое являе
 
 1. **navigate(screenBuilder, arg, popToInclusive, onPush)** - переходит на соответствующий экран, параметры:
   - **screenBuilder** используется для создания экземпляра экрана
-  - **arg** является экземляром **ScreenArg** и содержит аргументы для экрана
+  - **arg** является экземляром **ScreenArg** и содержит свойства которые вам нужно передать другому экоану
   - **popToInclusive** содержит **id** экрана, до которого стэк будет очищен или -1, если не нужно очищать стэк при навигации
   - **onPush** отвечает за добавление нового экрана и удаление старого из дерева **View** компонентов 
 2. **back()** - возвращается на предыдущий экран, возвращает **true** если стэк экранов не пустой
@@ -44,7 +44,7 @@ EmpathyQuotient - это Android приложение, которое являе
 |   |   |   |
 |---|---|---|
 |![screenshot #1](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen1.png)|![screenshot #2](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen2.png)|![screenshot #3](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen3.png)|
-|![screenshot #1](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen4.png)|![screenshot #2](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen5.png)|![screenshot #3](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/bg.png)|
+|![screenshot #4](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen4.png)|![screenshot #5](https://github.com/KiberneticWorm/EmpathyQuotient/blob/master/screens/screen5.png)|
 
 ## Записи экрана
 
