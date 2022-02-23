@@ -1,13 +1,9 @@
 package com.freeit.empathyquotient.presentation.view.other
 
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.Gravity
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
 import com.freeit.empathyquotient.presentation.screens.intro.QuestionWithAnswer
 import com.freeit.empathyquotient.R
@@ -19,23 +15,33 @@ class ContentDescriptionView(ctx: Context) : LinearLayoutCompat(ctx) {
 
     fun changeQuestion(question: QuestionWithAnswer) {
 
-        if (question.isAnim()) {
-            headerText.animate()
-                .withEndAction {
-                    headerText.text(question.q())
-                    headerText.animate().alpha(1f).setDuration(260L).start()
-                }
-                .alpha(0f).setDuration(260L).start()
-        } else {
-            headerText.text = question.q()
-        }
+        headerText.animate()
+            .withEndAction {
+                headerText.text(question.questionString(resources))
+                headerText.animate().alpha(1f).setDuration(260L).start()
+            }
+            .alpha(0f).setDuration(260L).start()
 
-        contentText.text = question.a()
+//        if (question.isAnim()) {
+//            headerText.animate()
+//                .withEndAction {
+//                    headerText.text(question.questionString())
+//                    headerText.animate().alpha(1f).setDuration(260L).start()
+//                }
+//                .alpha(0f).setDuration(260L).start()
+//        } else {
+//            headerText.text = question.questionString()
+//        }
 
-        backButton.isVisible = !question.isFirst()
-        forwardButton.isVisible = !question.isLast()
+        contentText.text = question.answerString(resources)
 
-        dotIndicatorView.selectDot(question.i(), question.isAnim())
+        question.backButtonVisible(backButton)
+        question.forwardButtonVisible(forwardButton)
+
+//        backButton.isVisible = !question.isFirst()
+//        forwardButton.isVisible = !question.isLast()
+
+        dotIndicatorView.selectDot(question.index(), true)
     }
 
     fun onDotChanged(listener: (index: Int) -> Unit) {

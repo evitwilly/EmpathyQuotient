@@ -24,9 +24,7 @@ import com.freeit.empathyquotient.presentation.view.other.ContentDescriptionView
 import ru.freeit.noxml.extensions.*
 
 
-class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id), ViewModelStoreOwner {
-
-    private val viewModelStore = ViewModelStore()
+class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : ScreenEntry.Abstract(screenVitals, screenArg, id) {
 
     override fun prefix() = Prefix.intro()
 
@@ -102,9 +100,11 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
 
         frameLayoutContainer.addView(backgroundImage, contentDescriptionView, startTestButton)
 
-        val localPrefsDataSource = (layoutInflater.context.applicationContext as App).localPrefsDataSource
-        val viewModel  = ViewModelProvider(this, IntroViewModelFactory(layoutInflater.context, localPrefsDataSource)).get(IntroViewModel::class.java)
-        val testStack = TestStack.Base((ctx.applicationContext as App).localPrefsDataSource)
+        val localPrefsDataSource = (ctx.applicationContext as App).localPrefsDataSource
+        val infoQuestionDataSource = IntroQuestionDataSource(localPrefsDataSource)
+        val testStack = TestStack.Base(localPrefsDataSource)
+
+        contentDescriptionView.changeQuestion(infoQuestionDataSource.question())
 
         startTestButton.setOnClickListener {
             testStack.clear()
@@ -122,24 +122,23 @@ class IntroScreen(screenVitals: ScreenVitals, screenArg: ScreenArg, id: Int) : S
             }
         }
 
-        contentDescriptionView.onDotChanged { viewModel.select(it) }
-        viewModel.selectedQuestion.observe(screenVitals.lifecycleOwner()) { question -> contentDescriptionView.changeQuestion(question) }
+        contentDescriptionView.onDotChanged { questionIndex ->
+            infoQuestionDataSource.select(questionIndex)
+            contentDescriptionView.changeQuestion(infoQuestionDataSource.question())
+        }
 
-        contentDescriptionView.onForwardClick { viewModel.next() }
-        contentDescriptionView.onBackClick { viewModel.prev() }
+        contentDescriptionView.onForwardClick {
+            infoQuestionDataSource.next()
+            contentDescriptionView.changeQuestion(infoQuestionDataSource.question())
+        }
 
-        frameLayoutContainer.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
-            override fun onViewAttachedToWindow(p0: View) {}
-            override fun onViewDetachedFromWindow(p0: View) {
-                viewModelStore.clear()
-            }
-        })
+        contentDescriptionView.onBackClick {
+            infoQuestionDataSource.prev()
+            contentDescriptionView.changeQuestion(infoQuestionDataSource.question())
+        }
 
         return frameLayoutContainer
     }
 
     override fun isStartDestination() = true
-
-    override fun getViewModelStore() = viewModelStore
-
 }
