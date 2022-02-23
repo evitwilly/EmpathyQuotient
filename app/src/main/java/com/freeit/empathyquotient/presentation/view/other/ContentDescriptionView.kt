@@ -4,8 +4,7 @@ import android.content.Context
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.view.isVisible
-import com.freeit.empathyquotient.presentation.screens.intro.QuestionWithAnswer
+import com.freeit.empathyquotient.presentation.screens.intro.IntroQuestion
 import com.freeit.empathyquotient.R
 import com.freeit.empathyquotient.core.extensions.robotoBold
 import com.freeit.empathyquotient.core.extensions.robotoRegular
@@ -13,11 +12,11 @@ import ru.freeit.noxml.extensions.*
 
 class ContentDescriptionView(ctx: Context) : LinearLayoutCompat(ctx) {
 
-    fun changeQuestion(question: QuestionWithAnswer) {
+    fun changeQuestion(introQuestion: IntroQuestion) {
 
         headerText.animate()
             .withEndAction {
-                headerText.text(question.questionString(resources))
+                headerText.text(introQuestion.questionString(resources))
                 headerText.animate().alpha(1f).setDuration(260L).start()
             }
             .alpha(0f).setDuration(260L).start()
@@ -33,15 +32,15 @@ class ContentDescriptionView(ctx: Context) : LinearLayoutCompat(ctx) {
 //            headerText.text = question.questionString()
 //        }
 
-        contentText.text = question.answerString(resources)
+        contentText.text = introQuestion.answerString(resources)
 
-        question.backButtonVisible(backButton)
-        question.forwardButtonVisible(forwardButton)
+        introQuestion.backButtonVisible(backButton)
+        introQuestion.forwardButtonVisible(forwardButton)
 
 //        backButton.isVisible = !question.isFirst()
 //        forwardButton.isVisible = !question.isLast()
 
-        dotIndicatorView.selectDot(question.index(), true)
+        dotIndicatorView.selectDot(introQuestion.index(), true)
     }
 
     fun onDotChanged(listener: (index: Int) -> Unit) {

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import ru.freeit.noxml.extensions.visible
 
-data class QuestionWithAnswer(
+data class IntroQuestion(
     private val id: Int = 0,
     @StringRes private val question: Int,
     @StringRes private val answer: Int,

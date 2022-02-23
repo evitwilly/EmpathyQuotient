@@ -6,9 +6,9 @@ import com.freeit.empathyquotient.core.LocalPrefsDataSource
 class IntroQuestionDataSource(private val source: LocalPrefsDataSource) {
 
     private val questions = listOf(
-        QuestionWithAnswer(0, R.string.what_is_it_question, R.string.what_is_it_answer),
-        QuestionWithAnswer(1, R.string.who_developed_question, R.string.who_developed_answer),
-        QuestionWithAnswer(2, R.string.what_is_the_max_score_question, R.string.what_is_the_max_score_answer)
+        IntroQuestion(0, R.string.what_is_it_question, R.string.what_is_it_answer),
+        IntroQuestion(1, R.string.who_developed_question, R.string.who_developed_answer),
+        IntroQuestion(2, R.string.what_is_the_max_score_question, R.string.what_is_the_max_score_answer)
     )
 
     private var currentQuestion = 0
@@ -17,7 +17,7 @@ class IntroQuestionDataSource(private val source: LocalPrefsDataSource) {
         currentQuestion = source.int(selectedIndexKey , 0)
     }
 
-    fun question() : QuestionWithAnswer {
+    fun question() : IntroQuestion {
         val question = questions[currentQuestion]
         return when (currentQuestion) {
             0 -> question.makeForwardVisible()
